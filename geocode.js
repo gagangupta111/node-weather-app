@@ -2,17 +2,18 @@
 var NodeGeocoder = require('node-geocoder');
 var yargs = require('yargs');
 
-yargs
-    .options[(
-      {
-        demand : true,
+const argv = yargs
+    .options({
+      a: {
+        demand: true,
         alias: 'address',
-        describe: 'Address to fetch weather for',
-        String: true
+        describe: ' Address to fetch weather for',
+        string: true,
       }
-    )];
-
-const argv = yargs.argv;
+    })
+    .help()
+    .alias('help', 'h')
+    .argv;
 
 console.log(argv);
 
@@ -28,7 +29,7 @@ var options = {
 var geocoder = NodeGeocoder(options);
 
 // Using callback
-geocoder.geocode(argv.a)
+geocoder.geocode(argv.address)
   .then(function(res) {
 
     console.log("================================");

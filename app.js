@@ -29,6 +29,7 @@ geocode.fetchAddress(argv.address, (errorMessage, addressDetails) => {
                 console.log(err);
             }else{
                 console.log("Tempreture is " + weatherDetail.temperature);
+                console.log("Other weather information", JSON.stringify(weatherDetail));
             }
         });
     }

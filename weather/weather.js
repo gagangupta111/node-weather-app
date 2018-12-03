@@ -10,6 +10,11 @@ const getWeather = (lattitude, longitude, callback) => {
         if(!error && response.statusCode === 200){
             callback(undefined, {
                 temperature: body.currently.temperature,
+                timezone: body.timezone,
+                apparentTemperature: body.currently.apparentTemperature,
+                pressure: body.currently.pressure,
+                windSpeed: body.currently.windSpeed,
+                cloudCover: body.currently.cloudCover,
             });
         }else{
             console.log("Unable to fetch weather");

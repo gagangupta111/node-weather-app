@@ -1,6 +1,6 @@
 var NodeGeocoder = require('node-geocoder');
 
-function fetchAddress(address, callback) {
+const fetchAddress =  (address, callback) => {
 
     var options = {
         provider: 'google',

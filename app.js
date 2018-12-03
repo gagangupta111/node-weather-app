@@ -17,5 +17,12 @@ const argv = yargs
 
 console.log(argv);
 
+geocode.fetchAddress(argv.address, (errorMessage, results) => {
 
-geocode.fetchAddress(argv.address);
+    if(errorMessage){
+        console.log(errorMessage);
+    }else{
+        console.log(JSON.stringify(results, undefined, 2));
+    }
+
+});

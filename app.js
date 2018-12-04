@@ -18,6 +18,7 @@ const argv = yargs
 
 console.log(argv);
 
+// regular callback
 geocode.fetchAddress(argv.address, (errorMessage, addressDetails) => {
 
     if(errorMessage){
@@ -36,3 +37,20 @@ geocode.fetchAddress(argv.address, (errorMessage, addressDetails) => {
 
 });
 
+geocode.fetchAddressReturnsPromise(argv.address)
+    .then((addressDetails) => {
+
+        console.log(JSON.stringify(addressDetails, undefined, 2));
+        weather.getWeatherReturnsPromise(addressDetails.latitude, addressDetails.longitude)
+            .then( (weatherDetail) => {
+                console.log(`Tempreture is ${weatherDetail.temperature}`);
+                console.log("Other weather information", JSON.stringify(weatherDetail));
+            })
+            .catch( (err) => {
+                console.log(err);
+            });
+
+    })
+    .catch((errorMessage) => {
+        console.log(errorMessage);
+    });
